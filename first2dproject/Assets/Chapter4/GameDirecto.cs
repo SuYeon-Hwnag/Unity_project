@@ -22,9 +22,9 @@ public class GameDirecto : MonoBehaviour
     void Update()
     {
         // 깃발과 차의 거리를 구하는 공식
-        float lenght = flag.transform.position.x - car.transform.position.x;
+        float length = flag.transform.position.x - car.transform.position.x;
 
         //alt + enter로 유니티 엔진 사용 F만 하면 기본적으로 소수점 두번째자리까지 표시
-        distance.GetComponent<Text>().text = "남은 거리: "+ lenght.ToString("F2"); //alt + enter로 유니티 엔진 사용
+        distance.GetComponent<Text>().text = "남은 거리: "+ length.ToString("F2"); //alt + enter로 유니티 엔진 사용
     }
 }

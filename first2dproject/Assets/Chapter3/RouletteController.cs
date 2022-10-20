@@ -6,40 +6,49 @@ using UnityEngine.UI;
 public class RouletteController : MonoBehaviour
 {
     float rotSpeed = 0; // 회전 속도
-    bool end = false;
-    int carmovecount = 0; // 룰렛 돌릴 기회
+    public bool end = false;
+    public int carmovecount = 0; // 룰렛 돌릴 기회
     GameObject count;
-
+    public bool carmoveing = false; // 차 움직이는거 가능 불가능
 
     // Start is called before the first frame update
     void Start()
     {
         count = GameObject.Find("count");
+
+
+
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         // 클릭하면 회전한다.
         // Input.GetMouseButtonDown(0) -> 한 번만 클릭
         // Input.GetMouseButton(0) -> 쭉 클릭
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && carmovecount == 0)
         {
             rotSpeed = 5;
             end = true;
         }
+
         // 회전 속도를 줄인다.
         rotSpeed *= 0.95f;
 
         // 회전 속도만큼 룰렛을 회전시킨다. 
-        gameObject.transform.Rotate(0,0,rotSpeed);
+        gameObject.transform.Rotate(0, 0, rotSpeed);
 
+        test();
+    }
+
+    public void test()
+    { 
         // 출력
         if (rotSpeed <= 0.01)
         {
             
-            if (end == true)
+            if (end == true && Input.GetMouseButtonUp(0)) // 마우스 뗄때 추가 
             {
                 if (gameObject.transform.eulerAngles.z > 330 || gameObject.transform.eulerAngles.z <= 30)
 
@@ -79,6 +88,7 @@ public class RouletteController : MonoBehaviour
                     carmovecount = 4;
                 }
                 end = false;
+                carmoveing = true;
             }
         }
     }
